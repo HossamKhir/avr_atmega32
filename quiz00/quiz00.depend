@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1551444000 source:g:\embeddeddiploma\egycet\projects\quiz00\main.c
+	<stdio.h>
+	<stdlib.h>
+

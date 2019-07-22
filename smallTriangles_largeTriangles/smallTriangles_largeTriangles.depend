@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1552268050 source:g:\embeddeddiploma\egycet\projects\smalltriangles_largetriangles\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

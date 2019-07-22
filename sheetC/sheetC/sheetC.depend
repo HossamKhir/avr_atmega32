@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1551138724 source:g:\embeddeddiploma\egycet\projects\sheetc\sheetc\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1549709053 source:g:\embeddeddiploma\egycet\projects\assignmentsession02\countingvalleys\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+

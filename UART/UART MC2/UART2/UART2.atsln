@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "UART MC2", "UART MC2\UART MC2.cproj", "{F73D812F-E818-474D-8B11-CB08E5A1DAC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F73D812F-E818-474D-8B11-CB08E5A1DAC9}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F73D812F-E818-474D-8B11-CB08E5A1DAC9}.Debug|AVR.Build.0 = Debug|AVR
+		{F73D812F-E818-474D-8B11-CB08E5A1DAC9}.Release|AVR.ActiveCfg = Release|AVR
+		{F73D812F-E818-474D-8B11-CB08E5A1DAC9}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

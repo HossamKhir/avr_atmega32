@@ -1,0 +1,6 @@
+There are many reasons why sometime we prefer to use LCD in 4-bit mode instead of 8-bit. One basic reason is less number of pins are needed to interface LCD.
+we only need 7 pins to interface with LCD. D4-D7 are the data pins connection and Enable, Read/Write and Register Select are for LCD control pins.
+In 4-bits mode data is sent nibble by nibble, 
+first we send higher nibble and then lower nibble. 
+This means in both command and data sending function we need to separate the higher 4-bits and lower 4-bits, send the higher 4-bits first the lower 4-bits.
+-----------------

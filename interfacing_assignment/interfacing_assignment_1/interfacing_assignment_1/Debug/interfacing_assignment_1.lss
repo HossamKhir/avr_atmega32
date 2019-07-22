@@ -1,0 +1,271 @@
+
+interfacing_assignment_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000160  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001c  00800060  00000160  000001d4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000001f0  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000020  00000000  00000000  00000220  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   0000017f  00000000  00000000  00000240  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000000fc  00000000  00000000  000003bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   0000013f  00000000  00000000  000004bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000034  00000000  00000000  000005fc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001d4  00000000  00000000  00000630  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000012c  00000000  00000000  00000804  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000010  00000000  00000000  00000930  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e6       	ldi	r30, 0x60	; 96
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 37       	cpi	r26, 0x7C	; 124
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 41 00 	call	0x82	; 0x82 <main>
+  7a:	0c 94 ae 00 	jmp	0x15c	; 0x15c <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <main>:
+//declare the 7-segment outputs in an array
+int seven_segment[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+int swapper[4] = {0x01, 0x02, 0x04, 0x08};
+
+int main(void)
+{
+  82:	cf 93       	push	r28
+  84:	df 93       	push	r29
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+  8a:	28 97       	sbiw	r28, 0x08	; 8
+  8c:	0f b6       	in	r0, 0x3f	; 63
+  8e:	f8 94       	cli
+  90:	de bf       	out	0x3e, r29	; 62
+  92:	0f be       	out	0x3f, r0	; 63
+  94:	cd bf       	out	0x3d, r28	; 61
+	DDRD = 0xFF;	//unlock port D for o/p
+  96:	8f ef       	ldi	r24, 0xFF	; 255
+  98:	81 bb       	out	0x11, r24	; 17
+	DDRC = 0x0F;	//unlock pins 0~3 in port C for o/p
+  9a:	8f e0       	ldi	r24, 0x0F	; 15
+  9c:	84 bb       	out	0x14, r24	; 20
+	int time[4] = {0, 0, 0, 0}, i = 0, j = 0;
+  9e:	fe 01       	movw	r30, r28
+  a0:	31 96       	adiw	r30, 0x01	; 1
+  a2:	88 e0       	ldi	r24, 0x08	; 8
+  a4:	df 01       	movw	r26, r30
+  a6:	1d 92       	st	X+, r1
+  a8:	8a 95       	dec	r24
+  aa:	e9 f7       	brne	.-6      	; 0xa6 <main+0x24>
+//declare the 7-segment outputs in an array
+int seven_segment[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+int swapper[4] = {0x01, 0x02, 0x04, 0x08};
+
+int main(void)
+{
+  ac:	05 e0       	ldi	r16, 0x05	; 5
+  ae:	10 e0       	ldi	r17, 0x00	; 0
+  b0:	28 e6       	ldi	r18, 0x68	; 104
+  b2:	30 e0       	ldi	r19, 0x00	; 0
+  b4:	60 e6       	ldi	r22, 0x60	; 96
+  b6:	70 e0       	ldi	r23, 0x00	; 0
+	DDRD = 0xFF;	//unlock port D for o/p
+	DDRC = 0x0F;	//unlock pins 0~3 in port C for o/p
+	int time[4] = {0, 0, 0, 0}, i = 0, j = 0;
+    while(1)
+    {
+		if(time[0] > 9)
+  b8:	89 81       	ldd	r24, Y+1	; 0x01
+  ba:	9a 81       	ldd	r25, Y+2	; 0x02
+  bc:	0a 97       	sbiw	r24, 0x0a	; 10
+  be:	3c f0       	brlt	.+14     	; 0xce <main+0x4c>
+		{
+			time[0] = 0;
+  c0:	1a 82       	std	Y+2, r1	; 0x02
+  c2:	19 82       	std	Y+1, r1	; 0x01
+			time[1]++;
+  c4:	8b 81       	ldd	r24, Y+3	; 0x03
+  c6:	9c 81       	ldd	r25, Y+4	; 0x04
+  c8:	01 96       	adiw	r24, 0x01	; 1
+  ca:	9c 83       	std	Y+4, r25	; 0x04
+  cc:	8b 83       	std	Y+3, r24	; 0x03
+		}
+		if (time[1] > 5)
+  ce:	8b 81       	ldd	r24, Y+3	; 0x03
+  d0:	9c 81       	ldd	r25, Y+4	; 0x04
+  d2:	06 97       	sbiw	r24, 0x06	; 6
+  d4:	3c f0       	brlt	.+14     	; 0xe4 <main+0x62>
+		{
+			time[1] = 0;
+  d6:	1c 82       	std	Y+4, r1	; 0x04
+  d8:	1b 82       	std	Y+3, r1	; 0x03
+			time[2]++;
+  da:	8d 81       	ldd	r24, Y+5	; 0x05
+  dc:	9e 81       	ldd	r25, Y+6	; 0x06
+  de:	01 96       	adiw	r24, 0x01	; 1
+  e0:	9e 83       	std	Y+6, r25	; 0x06
+  e2:	8d 83       	std	Y+5, r24	; 0x05
+		}
+		if (time[2] > 9)
+  e4:	8d 81       	ldd	r24, Y+5	; 0x05
+  e6:	9e 81       	ldd	r25, Y+6	; 0x06
+  e8:	0a 97       	sbiw	r24, 0x0a	; 10
+  ea:	3c f0       	brlt	.+14     	; 0xfa <main+0x78>
+		{
+			time[2] = 0;
+  ec:	1e 82       	std	Y+6, r1	; 0x06
+  ee:	1d 82       	std	Y+5, r1	; 0x05
+			time[3]++;
+  f0:	8f 81       	ldd	r24, Y+7	; 0x07
+  f2:	98 85       	ldd	r25, Y+8	; 0x08
+  f4:	01 96       	adiw	r24, 0x01	; 1
+  f6:	98 87       	std	Y+8, r25	; 0x08
+  f8:	8f 83       	std	Y+7, r24	; 0x07
+		}
+		if (time[3] > 5)
+  fa:	8f 81       	ldd	r24, Y+7	; 0x07
+  fc:	98 85       	ldd	r25, Y+8	; 0x08
+  fe:	06 97       	sbiw	r24, 0x06	; 6
+ 100:	54 f1       	brlt	.+84     	; 0x156 <main+0xd4>
+		{
+			time[3] = 0;
+ 102:	18 86       	std	Y+8, r1	; 0x08
+ 104:	1f 82       	std	Y+7, r1	; 0x07
+ 106:	27 c0       	rjmp	.+78     	; 0x156 <main+0xd4>
+		}
+		for(j = 0; j < 5; j++)
+		{
+			for(i = 0; i < 4; i++)
+			{
+				PORTC = swapper[i];
+ 108:	80 81       	ld	r24, Z
+ 10a:	32 96       	adiw	r30, 0x02	; 2
+ 10c:	85 bb       	out	0x15, r24	; 21
+				PORTD = seven_segment[time[i]];
+ 10e:	d7 01       	movw	r26, r14
+ 110:	8d 91       	ld	r24, X+
+ 112:	9d 91       	ld	r25, X+
+ 114:	7d 01       	movw	r14, r26
+ 116:	88 0f       	add	r24, r24
+ 118:	99 1f       	adc	r25, r25
+ 11a:	88 59       	subi	r24, 0x98	; 152
+ 11c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 11e:	dc 01       	movw	r26, r24
+ 120:	8c 91       	ld	r24, X
+ 122:	82 bb       	out	0x12, r24	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 124:	83 e7       	ldi	r24, 0x73	; 115
+ 126:	90 e4       	ldi	r25, 0x40	; 64
+ 128:	01 97       	sbiw	r24, 0x01	; 1
+ 12a:	f1 f7       	brne	.-4      	; 0x128 <main+0xa6>
+ 12c:	00 c0       	rjmp	.+0      	; 0x12e <main+0xac>
+ 12e:	00 00       	nop
+		{
+			time[3] = 0;
+		}
+		for(j = 0; j < 5; j++)
+		{
+			for(i = 0; i < 4; i++)
+ 130:	e2 17       	cp	r30, r18
+ 132:	f3 07       	cpc	r31, r19
+ 134:	49 f7       	brne	.-46     	; 0x108 <main+0x86>
+ 136:	41 50       	subi	r20, 0x01	; 1
+ 138:	51 09       	sbc	r21, r1
+		}
+		if (time[3] > 5)
+		{
+			time[3] = 0;
+		}
+		for(j = 0; j < 5; j++)
+ 13a:	41 15       	cp	r20, r1
+ 13c:	51 05       	cpc	r21, r1
+ 13e:	29 f0       	breq	.+10     	; 0x14a <main+0xc8>
+ 140:	fb 01       	movw	r30, r22
+ 142:	de 01       	movw	r26, r28
+ 144:	11 96       	adiw	r26, 0x01	; 1
+ 146:	7d 01       	movw	r14, r26
+ 148:	df cf       	rjmp	.-66     	; 0x108 <main+0x86>
+				PORTC = swapper[i];
+				PORTD = seven_segment[time[i]];
+				_delay_ms(66);
+			}
+		}
+		time[0]++;
+ 14a:	89 81       	ldd	r24, Y+1	; 0x01
+ 14c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 14e:	01 96       	adiw	r24, 0x01	; 1
+ 150:	9a 83       	std	Y+2, r25	; 0x02
+ 152:	89 83       	std	Y+1, r24	; 0x01
+    }
+ 154:	b1 cf       	rjmp	.-158    	; 0xb8 <main+0x36>
+//declare the 7-segment outputs in an array
+int seven_segment[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+int swapper[4] = {0x01, 0x02, 0x04, 0x08};
+
+int main(void)
+{
+ 156:	40 2f       	mov	r20, r16
+ 158:	51 2f       	mov	r21, r17
+ 15a:	f2 cf       	rjmp	.-28     	; 0x140 <main+0xbe>
+
+0000015c <_exit>:
+ 15c:	f8 94       	cli
+
+0000015e <__stop_program>:
+ 15e:	ff cf       	rjmp	.-2      	; 0x15e <__stop_program>

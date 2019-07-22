@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1549599016 source:g:\embeddeddiploma\egycet\projects\assignmentsession02\sockmerchant\main.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	<limits.h>
+	<math.h>
+	<stdbool.h>
+	<stddef.h>
+	<stdint.h>
+	<string.h>
+

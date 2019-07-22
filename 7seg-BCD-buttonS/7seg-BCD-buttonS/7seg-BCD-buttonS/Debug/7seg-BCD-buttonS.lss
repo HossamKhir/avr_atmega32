@@ -1,0 +1,259 @@
+
+7seg-BCD-buttonS.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000140  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  00000140  000001b4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000001be  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000020  00000000  00000000  000001ee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000161  00000000  00000000  0000020e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000000fa  00000000  00000000  0000036f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000168  00000000  00000000  00000469  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000034  00000000  00000000  000005d4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001d1  00000000  00000000  00000608  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000160  00000000  00000000  000007d9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000010  00000000  00000000  00000939  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e4       	ldi	r30, 0x40	; 64
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 41 00 	call	0x82	; 0x82 <main>
+  7a:	0c 94 9e 00 	jmp	0x13c	; 0x13c <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <main>:
+#include <util/delay.h> // to use delay function
+
+// 7segment with BCD single and multi press
+
+int main(void)
+{ 
+  82:	cf 93       	push	r28
+  84:	df 93       	push	r29
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+  8a:	2a 97       	sbiw	r28, 0x0a	; 10
+  8c:	0f b6       	in	r0, 0x3f	; 63
+  8e:	f8 94       	cli
+  90:	de bf       	out	0x3e, r29	; 62
+  92:	0f be       	out	0x3f, r0	; 63
+  94:	cd bf       	out	0x3d, r28	; 61
+	char g=1 , d=1;
+    char sev_seg[10]={0,1,2,3,4,5,6,7,8,9} ;
+  96:	8a e0       	ldi	r24, 0x0A	; 10
+  98:	e0 e6       	ldi	r30, 0x60	; 96
+  9a:	f0 e0       	ldi	r31, 0x00	; 0
+  9c:	de 01       	movw	r26, r28
+  9e:	11 96       	adiw	r26, 0x01	; 1
+  a0:	01 90       	ld	r0, Z+
+  a2:	0d 92       	st	X+, r0
+  a4:	8a 95       	dec	r24
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <main+0x1e>
+	int flag=0 ;
+	DDRC=0XFF ;   // O/P
+  a8:	8f ef       	ldi	r24, 0xFF	; 255
+  aa:	84 bb       	out	0x14, r24	; 20
+	PORTC=0X00 ; // OUT 00000000
+  ac:	15 ba       	out	0x15, r1	; 21
+	CLR_BIT(DDRB,0);  CLR_BIT(DDRB,1) ; // I/P
+  ae:	b8 98       	cbi	0x17, 0	; 23
+  b0:	b9 98       	cbi	0x17, 1	; 23
+	SET_BIT(PORTB,0);  	SET_BIT(PORTB,1); // PULL UP RESISTOR
+  b2:	c0 9a       	sbi	0x18, 0	; 24
+  b4:	c1 9a       	sbi	0x18, 1	; 24
+	
+	PORTC=0;
+  b6:	15 ba       	out	0x15, r1	; 21
+	flag=0 ;
+  b8:	80 e0       	ldi	r24, 0x00	; 0
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+
+// 7segment with BCD single and multi press
+
+int main(void)
+{ 
+	char g=1 , d=1;
+  bc:	31 e0       	ldi	r19, 0x01	; 1
+  be:	21 e0       	ldi	r18, 0x01	; 1
+		
+	 //single press for PIN B 0
+		
+			if(GET_BIT(PINB,0)==0) { if(g<=9) {PORTC=sev_seg[g] ; g++ ; _delay_ms(300);d=g;}
+			
+			                               else     {g=0; }   
+  c0:	60 e0       	ldi	r22, 0x00	; 0
+			
+		                                               else     {d=1;PORTC=sev_seg[0] ; }
+								        
+							                 }
+											 
+		else if(GET_BIT(PINB,1)==1)	{	    flag=0 ;}
+  c2:	50 e0       	ldi	r21, 0x00	; 0
+  c4:	40 e0       	ldi	r20, 0x00	; 0
+		
+		
+	//	Multi  Press for PIN B 1
+		
+		
+		if((GET_BIT(PINB,1)==0)&&(flag==0)) { flag=1 ; if(d<=9) {PORTC=sev_seg[d] ; d++ ;g=d; }
+  c6:	a1 e0       	ldi	r26, 0x01	; 1
+  c8:	70 e0       	ldi	r23, 0x00	; 0
+			
+		                                               else     {d=1;PORTC=sev_seg[0] ; }
+  ca:	b1 e0       	ldi	r27, 0x01	; 1
+  cc:	02 c0       	rjmp	.+4      	; 0xd2 <main+0x50>
+								        
+							                 }
+											 
+		else if(GET_BIT(PINB,1)==1)	{	    flag=0 ;}
+  ce:	85 2f       	mov	r24, r21
+  d0:	94 2f       	mov	r25, r20
+	while(1)
+	{
+		
+	 //single press for PIN B 0
+		
+			if(GET_BIT(PINB,0)==0) { if(g<=9) {PORTC=sev_seg[g] ; g++ ; _delay_ms(300);d=g;}
+  d2:	b0 99       	sbic	0x16, 0	; 22
+  d4:	17 c0       	rjmp	.+46     	; 0x104 <main+0x82>
+  d6:	2a 30       	cpi	r18, 0x0A	; 10
+  d8:	a0 f4       	brcc	.+40     	; 0x102 <main+0x80>
+  da:	e1 e0       	ldi	r30, 0x01	; 1
+  dc:	f0 e0       	ldi	r31, 0x00	; 0
+  de:	ec 0f       	add	r30, r28
+  e0:	fd 1f       	adc	r31, r29
+  e2:	e2 0f       	add	r30, r18
+  e4:	f1 1d       	adc	r31, r1
+  e6:	30 81       	ld	r19, Z
+  e8:	35 bb       	out	0x15, r19	; 21
+  ea:	2f 5f       	subi	r18, 0xFF	; 255
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ec:	3f e5       	ldi	r19, 0x5F	; 95
+  ee:	ea ee       	ldi	r30, 0xEA	; 234
+  f0:	f0 e0       	ldi	r31, 0x00	; 0
+  f2:	31 50       	subi	r19, 0x01	; 1
+  f4:	e0 40       	sbci	r30, 0x00	; 0
+  f6:	f0 40       	sbci	r31, 0x00	; 0
+  f8:	e1 f7       	brne	.-8      	; 0xf2 <main+0x70>
+  fa:	00 c0       	rjmp	.+0      	; 0xfc <main+0x7a>
+  fc:	00 00       	nop
+  fe:	32 2f       	mov	r19, r18
+ 100:	01 c0       	rjmp	.+2      	; 0x104 <main+0x82>
+			
+			                               else     {g=0; }   
+ 102:	26 2f       	mov	r18, r22
+		
+		
+	//	Multi  Press for PIN B 1
+		
+		
+		if((GET_BIT(PINB,1)==0)&&(flag==0)) { flag=1 ; if(d<=9) {PORTC=sev_seg[d] ; d++ ;g=d; }
+ 104:	b1 99       	sbic	0x16, 1	; 22
+ 106:	17 c0       	rjmp	.+46     	; 0x136 <main+0xb4>
+ 108:	00 97       	sbiw	r24, 0x00	; 0
+ 10a:	a9 f4       	brne	.+42     	; 0x136 <main+0xb4>
+ 10c:	3a 30       	cpi	r19, 0x0A	; 10
+ 10e:	68 f4       	brcc	.+26     	; 0x12a <main+0xa8>
+ 110:	e1 e0       	ldi	r30, 0x01	; 1
+ 112:	f0 e0       	ldi	r31, 0x00	; 0
+ 114:	ec 0f       	add	r30, r28
+ 116:	fd 1f       	adc	r31, r29
+ 118:	e3 0f       	add	r30, r19
+ 11a:	f1 1d       	adc	r31, r1
+ 11c:	80 81       	ld	r24, Z
+ 11e:	85 bb       	out	0x15, r24	; 21
+ 120:	3f 5f       	subi	r19, 0xFF	; 255
+ 122:	23 2f       	mov	r18, r19
+ 124:	8a 2f       	mov	r24, r26
+ 126:	97 2f       	mov	r25, r23
+ 128:	d4 cf       	rjmp	.-88     	; 0xd2 <main+0x50>
+			
+		                                               else     {d=1;PORTC=sev_seg[0] ; }
+ 12a:	89 81       	ldd	r24, Y+1	; 0x01
+ 12c:	85 bb       	out	0x15, r24	; 21
+		
+		
+	//	Multi  Press for PIN B 1
+		
+		
+		if((GET_BIT(PINB,1)==0)&&(flag==0)) { flag=1 ; if(d<=9) {PORTC=sev_seg[d] ; d++ ;g=d; }
+ 12e:	8a 2f       	mov	r24, r26
+ 130:	97 2f       	mov	r25, r23
+			
+		                                               else     {d=1;PORTC=sev_seg[0] ; }
+ 132:	3b 2f       	mov	r19, r27
+ 134:	ce cf       	rjmp	.-100    	; 0xd2 <main+0x50>
+								        
+							                 }
+											 
+		else if(GET_BIT(PINB,1)==1)	{	    flag=0 ;}
+ 136:	b1 99       	sbic	0x16, 1	; 22
+ 138:	ca cf       	rjmp	.-108    	; 0xce <main+0x4c>
+ 13a:	cb cf       	rjmp	.-106    	; 0xd2 <main+0x50>
+
+0000013c <_exit>:
+ 13c:	f8 94       	cli
+
+0000013e <__stop_program>:
+ 13e:	ff cf       	rjmp	.-2      	; 0x13e <__stop_program>

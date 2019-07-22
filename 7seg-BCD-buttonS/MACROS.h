@@ -1,0 +1,17 @@
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define CLEAR-BIT(REG,INDEX) (REG&=(~(1<<INDEX)))
+#define TOGGLE-BIT(REG,INDEX) (REG^=(1<<INDEX))
+
+#define GET-BIT(REG,INDEX) ((REG>>INDEX)&0X01)
+
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))
+#define SET-BIT(REG,INDEX) (REG|=(1<<INDEX))

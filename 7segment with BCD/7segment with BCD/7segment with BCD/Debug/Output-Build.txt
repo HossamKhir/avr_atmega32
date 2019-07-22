@@ -1,0 +1,22 @@
+﻿------ Build started: Project: 7segment with BCD, Configuration: Debug AVR ------
+Build started.
+Project "7segment with BCD.cproj" (default targets):
+Target "PreBuildEvent" skipped, due to false condition; ('$(PreBuildEvent)'!='') was evaluated as (''!='').
+Target "CoreBuild" in file "C:\Program Files (x86)\Atmel\Atmel Studio 6.2\Vs\Compiler.targets" from project "F:\ES\Islam Hagag\programs\interfacing programms\led-switch\7segment with BCD\7segment with BCD\7segment with BCD\7segment with BCD.cproj" (target "Build" depends on it):
+	Task "RunCompilerTask"
+		Shell Utils Path C:\Program Files (x86)\Atmel\Atmel Studio 6.2\shellUtils
+		C:\Program Files (x86)\Atmel\Atmel Studio 6.2\shellUtils\make.exe all 
+		make: Nothing to be done for `all'.
+	Done executing task "RunCompilerTask".
+	Task "RunOutputFileVerifyTask"
+				Program Memory Usage 	:	154 bytes   0.5 % Full
+				Data Memory Usage 		:	0 bytes   0.0 % Full
+	Done executing task "RunOutputFileVerifyTask".
+Done building target "CoreBuild" in project "7segment with BCD.cproj".
+Target "PostBuildEvent" skipped, due to false condition; ('$(PostBuildEvent)' != '') was evaluated as ('' != '').
+Target "Build" in file "C:\Program Files (x86)\Atmel\Atmel Studio 6.2\Vs\Avr.common.targets" from project "F:\ES\Islam Hagag\programs\interfacing programms\led-switch\7segment with BCD\7segment with BCD\7segment with BCD\7segment with BCD.cproj" (entry point):
+Done building target "Build" in project "7segment with BCD.cproj".
+Done building project "7segment with BCD.cproj".
+
+Build succeeded.
+========== Build: 1 succeeded or up-to-date, 0 failed, 0 skipped ==========
